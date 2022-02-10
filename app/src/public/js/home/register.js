@@ -9,15 +9,16 @@ const id = document.querySelector("#id"),
     RegisterBtn = document.querySelector("#button");
     
 
-RegisterBtn.addEventListener("click",Register);
+RegisterBtn.addEventListener("click",register);
 
-function Register(){
+function register(){
+    if(!id.value) return alert("아이디를 입력해주십시오.");
+    if(psword.value !== confirmPsword.value) return alert("비밀번호가 일치하지 않습니다.");
+
     const req = {
         id: id.value,
         name: name.value,
         psword : psword.value,
-        confirmPsword : confirmPsword.value,
-
     };
     console.log(req);
     fetch("/register",{
@@ -37,6 +38,6 @@ function Register(){
         }
     })
     .catch((err)=>{
-        console.error(new Error("로그인 중 에러 발생"));
+        console.error(new Error("회원가입 중 에러 발생"));
     });
 }
