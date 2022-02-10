@@ -19,5 +19,7 @@ function login(){
             "Content-Type":"application/json",
         },
         body: JSON.stringify(req)//오브젝트를 json 형태로 바꿔주는 명령어
-    });
+    })
+    .then((res)=>res.json())
+    .then(console.log);
 }
