@@ -1,19 +1,26 @@
-"use strict"
+"use strict";
 
 //DOM => Document Object Model (interface)
 
 const id = document.querySelector("#id"),
+    name = document.querySelector("#name"),
     psword = document.querySelector("#psword"),
-    loginBtn = document.querySelector("#button");
+    confirmPsword = document.querySelector("#confirm-psword"),
+    RegisterBtn = document.querySelector("#button");
+    
 
-loginBtn.addEventListener("click",login);
-function login(){
+RegisterBtn.addEventListener("click",Register);
+
+function Register(){
     const req = {
         id: id.value,
+        name: name.value,
         psword : psword.value,
+        confirmPsword : confirmPsword.value,
+
     };
-    
-    fetch("/login",{
+    console.log(req);
+    fetch("/register",{
         method: "POST",
         headers:{
             "Content-Type":"application/json",
@@ -23,7 +30,7 @@ function login(){
     .then((res)=>res.json())
     .then((res)=>{
         if(res.success){
-            location.href ="/";
+            location.href ="/login";
         }
         else{
             alert(res.msg);
